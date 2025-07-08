@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Run script for analytics"
-        uses: AlexSim93/pull-request-analytics-action@v4
+        uses: Geedee231/pull-request-analytics-action@v4
         with:
           GITHUB_TOKEN: ${{ secrets.PR_TOKEN }} # In the case of a personal access token, it needs to be added to the repository's secrets and used in this field.
           GITHUB_REPO_FOR_ISSUE: 'hellocd' # Make sure to specify the name of the repository where the issue will be created
@@ -23,3 +23,7 @@ jobs:
           TIMEZONE: "Africa/Lagos"
           REPORT_DATE_START: ${{ inputs.report_date_start }}
           REPORT_DATE_END: ${{ inputs.report_date_end }}
+    env:
+          GITHUB_API_URL: http(s)://HOSTNAME/api/v3
+          EXECUTION_OUTCOME: "markdown"
+          ALLOW_ANALYTICS: "true"

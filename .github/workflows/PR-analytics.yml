@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Run script for analytics"
-        uses: Geedee231/pull-request-analytics-action@v4
+        uses: AlexSim93/pull-request-analytics-action@v4
         with:
           GITHUB_TOKEN: ${{ secrets.PR_TOKEN }} # In the case of a personal access token, it needs to be added to the repository's secrets and used in this field.
           GITHUB_REPO_FOR_ISSUE: 'hellocd' # Make sure to specify the name of the repository where the issue will be created

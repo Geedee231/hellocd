@@ -18,6 +18,9 @@ jobs:
           GITHUB_REPO_FOR_ISSUE: 'hellocd'
           GITHUB_OWNER_FOR_ISSUE: 'Geedee231'
           GITHUB_OWNERS_REPOS: 'Geedee231/hellocd'
+          CORE_HOURS_START: "19:00"
+          CORE_HOURS_END: "02:00"
+          TIMEZONE: "Africa/Lagos"
           REPORT_DATE_START: ${{ inputs.report_date_start }}
           REPORT_DATE_END: ${{ inputs.report_date_end }}
           EXECUTION_OUTCOME: "new-issue"  # This will create an issue

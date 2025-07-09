@@ -1,65 +1,29 @@
-name: "PR Analytics - Debug Version"
+name: "PR Analytics"
 on:
   workflow_dispatch:
     inputs:
       report_date_start:
-        description: "Report date start (DD/MM/YYYY)"
-        required: true
-        default: "01/07/2025"
+        description: "Report date start(d/MM/yyyy)"
       report_date_end:
-        description: "Report date end (DD/MM/YYYY)"
-        required: true
-        default: "09/07/2025"
-
+        description: "Report date end(d/MM/yyyy)"
 jobs:
-  debug-prs:
-    name: "Debug PR Count"
-    runs-on: ubuntu-latest
-    steps:
-      - name: "Check PRs manually"
-        run: |
-          echo "🔍 Checking PRs in repository..."
-          
-          # Get all PRs (both open and closed)
-          echo "📊 All PRs:"
-          curl -H "Authorization: token ${{ secrets.PR_TOKEN }}" \
-               -H "Accept: application/vnd.github.v3+json" \
-               "https://api.github.com/repos/Geedee231/hellocd/pulls?state=all&per_page=100" \
-               | jq '.[] | {number: .number, title: .title, state: .state, created_at: .created_at, updated_at: .updated_at, merged_at: .merged_at}'
-          
-          echo "📈 Total PR count:"
-          curl -H "Authorization: token ${{ secrets.PR_TOKEN }}" \
-               -H "Accept: application/vnd.github.v3+json" \
-               "https://api.github.com/repos/Geedee231/hellocd/pulls?state=all&per_page=100" \
-               | jq '. | length'
-
   create-report:
-    name: "Create Enhanced Report"
+    name: "Create report"
     runs-on: ubuntu-latest
-    needs: debug-prs
     steps:
-      - name: "Run analytics with enhanced settings"
+      - name: "Run script for analytics"
         uses: AlexSim93/pull-request-analytics-action@v4
         with:
-          GITHUB_TOKEN: ${{ secrets.PR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PR_TOKEN }}  # Use your custom token
           GITHUB_REPO_FOR_ISSUE: 'hellocd'
           GITHUB_OWNER_FOR_ISSUE: 'Geedee231'
           GITHUB_OWNERS_REPOS: 'Geedee231/hellocd'
+          #CORE_HOURS_START: "19:00"
+          #CORE_HOURS_END: "02:00"
+          #TIMEZONE: "Africa/Lagos"
           REPORT_DATE_START: ${{ inputs.report_date_start }}
           REPORT_DATE_END: ${{ inputs.report_date_end }}
-          EXECUTION_OUTCOME: "new-issue"
-          PULL_REQUEST_STATE: "all"
-          AMOUNT_OF_PULL_REQUESTS: "200"  # Increased limit
-          SHOW_STATS_TYPES: "timeline,workload,pr-quality,code-review-engagement,response-time"
-          TOP_LIST_AMOUNT: "10"  # Show more items
-          PERCENTILE: "75"
-          PERIOD_SPLIT_UNIT: "days"  # More granular than weeks
-          AGGREGATE_VALUE_METHODS: "percentile"
-          USE_CHARTS: "true"
-          SHOW_CORRELATION_GRAPHS: "true"
-          SHOW_ACTIVITY_TIME_GRAPHS: "true"
-          HIDE_USERS: ""  # Don't hide any users
-          INCLUDE_BOTS: "false"  # Exclude bot PRs
+          EXECUTION_OUTCOME: "new-issue"  # This will create an issue
         env:
-          GITHUB_API_URL: https://api.github.com
+          GITHUB_API_URL: https://api.github.com  # Correct API URL
           ALLOW_ANALYTICS: "true"

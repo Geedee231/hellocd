@@ -18,15 +18,17 @@ jobs:
           GITHUB_REPO_FOR_ISSUE: 'hellocd'
           GITHUB_OWNER_FOR_ISSUE: 'Geedee231'
           GITHUB_OWNERS_REPOS: 'Geedee231/hellocd'
-          CORE_HOURS_START: "00:00"
-          CORE_HOURS_END: "03:00"
-          TIMEZONE: "Africa/Lagos"
+          #CORE_HOURS_START: "00:00"
+          #CORE_HOURS_END: "03:00"
+          #TIMEZONE: "Africa/Lagos"
           REPORT_DATE_START: ${{ inputs.report_date_start }}
           REPORT_DATE_END: ${{ inputs.report_date_end }}
           EXECUTION_OUTCOME: "new-issue,markdown,collection"  
           SHOW_STATS_TYPES: "timeline,workload,pr-quality,code-review-engagement,response-time"
           TOP_LIST_AMOUNT: "5"
           AGGREGATE_VALUE_METHODS: "percentile"
+          PERCENTILE: "75"
+          PULL_REQUEST_STATE: "all"
         env:
           GITHUB_API_URL: https://api.github.com  # Correct API URL
           ALLOW_ANALYTICS: "true"

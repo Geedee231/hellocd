@@ -20,7 +20,7 @@ jobs:
           GITHUB_OWNERS_REPOS: 'Geedee231/hellocd' # Be sure to list the owner and repository name in the format owner/repo
           #CORE_HOURS_START: "9:00"
           #CORE_HOURS_END: "19:00"
-          TIMEZONE: "Africa/Lagos"
+          #TIMEZONE: "Africa/Lagos"
           REPORT_DATE_START: ${{ inputs.report_date_start }}
           REPORT_DATE_END: ${{ inputs.report_date_end }}
     env:

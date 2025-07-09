@@ -23,7 +23,11 @@ jobs:
           #TIMEZONE: "Africa/Lagos"
           REPORT_DATE_START: ${{ inputs.report_date_start }}
           REPORT_DATE_END: ${{ inputs.report_date_end }}
-          EXECUTION_OUTCOME: "new-issue"  # This will create an issue
+          EXECUTION_OUTCOME: "new-issue,markdown,collection"  
+          SHOW_STATS_TYPES: "timeline,workload,pr-quality,code-review-engagement,response-time"
+          TOP_LIST_AMOUNT: "5"
+          AGGREGATE_VALUE_METHODS: "percentile"
         env:
           GITHUB_API_URL: https://api.github.com  # Correct API URL
           ALLOW_ANALYTICS: "true"
+         
